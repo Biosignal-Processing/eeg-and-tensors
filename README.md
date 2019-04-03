@@ -3,3 +3,4 @@ A utilizacao de ferramentas tensoriais para processamento do EEG e predicao de c
 
 Deste modo, observamos o conjunto de dados de um artigo da IEEE, para vislumbrar o uso de tecnicas tensoriais e se for o caso, testar sua eficiencia e eficacia na solucao destes problemas.
 
+Parte do DATASET está disponível em: https://physionet.org/pn6/chbmit/

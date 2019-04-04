@@ -3,25 +3,7 @@
 % A matriz ICTAL tem 50 x 1024, ou seja, cada linha eh o canal no tempo
 function(X)=eeg2tensor(EEG)
 
-
-
-
-
-
-
-
-
-
-
-
-
 n=size(ictal);
-
-for i=1:4
-	figure(i);
-	plot(ictal(i,:));
-
-
 
 % FFT do sinal ICTAL	
 ictal_fft=zeros(n);
@@ -29,12 +11,6 @@ ictal_fft=zeros(n);
 for i=1:n(1,:)
 	ictal_fft(i,:)=abs(fft(ictal(i,:)));
 end
-
-
-
-
-
-
 
 X(:,:,1)=ictal;
 X(:,:,2)=ictal_fft;
@@ -50,7 +26,3 @@ X(:,:,2)=ictal_fft;
 
 % Estatisticas de quarta ordem
 	% Kurtosis 
-
-
-
-%Tempo=datetime('now','Format','HH:mm:ss.SSS') - Tempo;

@@ -1,28 +1,28 @@
-% Projeto de Iniciacao Cientifica - UFC
-% Recebe o vetor de canais x sinal (no tempo)
-% A matriz ICTAL tem 50 x 1024, ou seja, cada linha eh o canal no tempo
-function(X)=eeg2tensor(EEG)
+% PIBIC - UFC
+% Author: Lucas Abdalah
+% The dataset give us a 50 x 1024 matrix where wich row is a channel
+% Channels x Signal (In time)
 
-n=size(ictal);
+function X =eeg2tensor(EEG)
 
-% FFT do sinal ICTAL	
-ictal_fft=zeros(n);
+% Receive EEGs dimensions
+n=size(EEG);
 
-for i=1:n(1,:)
-	ictal_fft(i,:)=abs(fft(ictal(i,:)));
+% Number of pages of the X tensor
+pages=2;
+
+% Variable to receive the FFT of the EEG signal
+EEG_fft=zeros(n);
+
+% Loop to calculate and assign the FFT matrix  
+for ii=1:n(1,:)
+	EEG_fft(ii,:)=abs(fft(EEG(ii,:)));
 end
 
-X(:,:,1)=ictal;
-X(:,:,2)=ictal_fft;
+% Variable to receive the X tensor, 
+% The originl matrix is the first page 
+% FFT matrix is the second page
 
-% Estatisticas de primeira ordem
-	% Nomes
-	
-% Estatisticas de segunda ordem
-	% Nomes	
-
-% Estatisticas de terceira ordem
-	% Skewness - Obliquidade
-
-% Estatisticas de quarta ordem
-	% Kurtosis 
+X = zeros(n(1), n(2), pages)
+X(:,:,1)=EEG; 
+X(:,:,2)=EEG_fft;

@@ -23,6 +23,6 @@ end
 % The originl matrix is the first page 
 % FFT matrix is the second page
 
-X = zeros(n(1), n(2), pages)
+X = zeros(n(1), n(2), pages);
 X(:,:,1)=EEG; 
 X(:,:,2)=EEG_fft;

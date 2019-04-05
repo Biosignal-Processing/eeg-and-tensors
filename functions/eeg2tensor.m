@@ -1,9 +1,19 @@
+function X = eeg2tensor(EEG)
+
+%eeg2tensor EEG signal to Tensor.
+%   eeg2tensor(EEG) returns X, wich the tensor's second 'page' is the frequency matrix,
+%   obtained with the FFT(X)
+%
+%   Authors: Lucas Abdalah       (lucasabdalah@gmail.com)
+%         
+% Version History:
+% - 2019/04/05 	- ORIGINAL with FFT
+% 
+
 % PIBIC - UFC
 % Author: Lucas Abdalah
 % The dataset give us a 50 x 1024 matrix where wich row is a channel
 % Channels x Signal (In time)
-
-function X =eeg2tensor(EEG)
 
 % Receive EEGs dimensions
 n=size(EEG);

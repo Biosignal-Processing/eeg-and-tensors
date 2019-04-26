@@ -6,22 +6,34 @@ clear all; close all; clc; % Clear all the workspace
 % Load your working dataet
 % The variable ictal.mat is 50 x 1024 matrix
 
-fs=256; % Samples/second
-
 load('ictal'); % Carrega os dados de 'ictal'
 
+fs=256; % Samples/second
+
 % Transpose DATA to result in a matrix Signal X Channel(1024x50)
-ictal=a'; % Recebe a matriz
+x=a'; %
 
 % Centering and Scaling
 	%ictal=center_scale(ictal);
 
-% Skewness
-	%ictal=skewness(ictal);
+	% Statistics 
+		x_std=std(x);
 
+		x_mean=mean(x);
+	% Subtract the mean (and divide by the standard deviation)
+		for ii=1:channels
+		   disp(ii);
+		   x(:,ii)=(x(:,ii) - x_mean(ii))/x_std(ii);
+		end
+
+	% Plot the heatmap of x covariance
+		cov(x)>0.75;
+		B = double(ans);
+		figure
+		heatmap(B);
 
 % Time (s) for X axis
-	a1=ictal(:,1);
+	a1=x(:,1);
 	ts=1/fs;
 	n1=numel(a1);
 
@@ -31,10 +43,7 @@ plot(a1,t);
 
 % PCA 
 
-
 % TENSOR
 
-
-
-% Function that return the X tensor (Channel X Signal X Frequency)
-X=eeg2tensor(ictal);
+% Function that return the y tensor (Channel X Signal X Frequency)
+y=eeg2tensor(x);

@@ -8,42 +8,45 @@ clear all; close all; clc; % Clear all the workspace
 
 load('ictal'); % Carrega os dados de 'ictal'
 
+% Transpose DATA to result in a matrix Signal X Channel(1024x50)
+x=a'; % Recebe a matriz
+
 fs=256; % Samples/second
 
-% Transpose DATA to result in a matrix Signal X Channel(1024x50)
-x=a'; %
-
-% Centering and Scaling
-	%ictal=center_scale(ictal);
-
-	% Statistics 
-		x_std=std(x);
-
-		x_mean=mean(x);
-	% Subtract the mean (and divide by the standard deviation)
-		for ii=1:channels
-		   disp(ii);
-		   x(:,ii)=(x(:,ii) - x_mean(ii))/x_std(ii);
-		end
-
-	% Plot the heatmap of x covariance
-		cov(x)>0.75;
-		B = double(ans);
-		figure
-		heatmap(B);
+[samples, channels]=size(x);
 
 % Time (s) for X axis
-	a1=x(:,1);
 	ts=1/fs;
-	n1=numel(a1);
+	t=0:ts:(samples-1)*ts;
 
-	t=0:ts:(n1-1)*ts;
+% Centering and Scaling
+	%x=center_scale(x);
+    
+x_std=std(x);
+    % plot(x_std);
 
-plot(a1,t);
+x_mean=mean(x);
+    % plot(x_mean); 
 
-% PCA 
+figure
+    plot(t,x(:,1))
+    title('Canal 1: Original')
+    xlabel('Tempo (s)');
+    ylabel('Amplitude (mV)')    
+    grid on
+    
+for ii=1:channels
+   x(:,ii)=(x(:,ii) - x_mean(ii))/x_std(ii);
+end
 
-% TENSOR
+pause
 
+figure
+    plot(t,x(:,1),'r');
+    title('Canal 1: Normalizado')
+    xlabel('Tempo (s)');
+    ylabel('Amplitude Normalizada (mV)')    
+    grid on
+    
 % Function that return the y tensor (Channel X Signal X Frequency)
 y=eeg2tensor(x);

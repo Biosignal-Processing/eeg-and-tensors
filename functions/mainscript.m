@@ -1,6 +1,6 @@
 % PIBIC - UFC
 
-clear all; close all; clc; % Clear all the workspace
+clearvars; close all; clc; % Clear all the workspace
 %Tempo=datetime('now','Format','HH:mm:ss.SSS');
 
 % Load your working dataet
@@ -19,34 +19,26 @@ fs=256; % Samples/second
 	ts=1/fs;
 	t=0:ts:(samples-1)*ts;
 
-% Centering and Scaling
-	%x=center_scale(x);
-    
-x_std=std(x);
-    % plot(x_std);
-
-x_mean=mean(x);
-    % plot(x_mean); 
-
-figure
+ figure
     plot(t,x(:,1))
     title('Canal 1: Original')
     xlabel('Tempo (s)');
     ylabel('Amplitude (mV)')    
-    grid on
+    grid on   
+ 
+% Centering and Scaling
+	x_cs=center_scale(x);
     
-for ii=1:channels
-   x(:,ii)=(x(:,ii) - x_mean(ii))/x_std(ii);
-end
-
 pause
 
 figure
-    plot(t,x(:,1),'r');
+    plot(t,x_cs(:,1),'r');
     title('Canal 1: Normalizado')
     xlabel('Tempo (s)');
     ylabel('Amplitude Normalizada (mV)')    
     grid on
     
 % Function that return the y tensor (Channel X Signal X Frequency)
+
+% 
 y=eeg2tensor(x);

@@ -6,10 +6,13 @@ clearvars; close all; clc; % Clear all the workspace
 % Load your working dataet
 % The variable ictal.mat is 50 x 1024 matrix
 
-load('ictal'); % Carrega os dados de 'ictal'
+[header, a] = edfread('chb01_03.edf');
 
 % Transpose DATA to result in a matrix Signal X Channel(1024x50)
 x=a'; % Recebe a matriz
+
+% Clear any variable different of x 
+clearvars -except x
 
 fs=256; % Samples/second
 
@@ -18,7 +21,8 @@ fs=256; % Samples/second
 % Time (s) for X axis
 	ts=1/fs;
 	t=0:ts:(samples-1)*ts;
-
+    clear ts;
+    
  figure
     plot(t,x(:,1))
     title('Canal 1: Original')

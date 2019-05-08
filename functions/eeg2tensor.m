@@ -16,7 +16,7 @@ function X = eeg2tensor(EEG)
 n=size(EEG);
 
 % Number of pages of the X tensor
-pages=2;
+pages=;
 
 % Variable to receive the FFT of the EEG signal
 EEG_fft=zeros(n);

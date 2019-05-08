@@ -100,13 +100,13 @@ clc
     yyaxis left;
     title('ScreePlot')
     xlabel('Componentes')
-    ylabel('Variância')
+    ylabel('Autovalores')
     yyaxis right;
-    ylim([0 100]);
+    ylim([0 100*(max(latent)/channels)]);
     ylabel('Percentual')
     grid on
     
+% Function that return the y tensor (Channel X Signal X Frequency) 
+%y=eeg2tensor(x);
+
 % ALS
-% Function that return the y tensor (Channel X Signal X Frequency)
- 
-y=eeg2tensor(x);

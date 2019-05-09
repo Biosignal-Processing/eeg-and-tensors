@@ -1,4 +1,4 @@
-function X = eeg2tensor(EEG)
+function X = eeg2tensor(EEG,fs)
 % eeg2tensor EEG signal to Tensor.
 %   eeg2tensor(EEG) returns X, wich the tensor's second 'page' is the frequency matrix,
 %   obtained with the FFT(X)
@@ -10,26 +10,17 @@ function X = eeg2tensor(EEG)
 %         
 % Version History:
 % - 2019/04/05 	- ORIGINAL with FFT
-% 
+% - 2019/05/09  - With Spectrogram Frequency x Time
 
-% Receive EEGs dimensions
-n=size(EEG);
-
-% Number of pages of the X tensor
-pages=;
+% Number of channels equals of pages of the X tensor
+pages=size(EEG,2);    
 
 % Variable to receive the FFT of the EEG signal
-EEG_fft=zeros(n);
+[mm, nn]=size(spectrogram(EEG(:,1),[],[],[],fs,'yaxis'));
+
+X = zeros(mm, nn, pages);
 
 % Loop to calculate and assign the FFT matrix  
-for ii=1:n(1,:)
-	EEG_fft(ii,:)=abs(fft(EEG(ii,:)));
+for ii=1:pages
+	X(:,:,ii)=(spectrogram(EEG(:,ii),[],[],[],fs,'yaxis'));
 end
-
-% Variable to receive the X tensor, 
-% The originl matrix is the first page 
-% FFT matrix is the second page
-
-X = zeros(n(1), n(2), pages);
-X(:,:,1)=EEG; 
-X(:,:,2)=EEG_fft;

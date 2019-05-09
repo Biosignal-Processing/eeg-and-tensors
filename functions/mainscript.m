@@ -1,8 +1,13 @@
 % PIBIC - UFC
 % EEG and Tensors
 
-
 clearvars; close all; clc; % Clear all the workspace
+
+% APAGAR EM APRESENTAÇÃO
+% Turn pause on to stop at each step
+pause off
+
+
 %Tempo=datetime('now','Format','HH:mm:ss.SSS');
 
 % Load your working dataet
@@ -105,8 +110,18 @@ clc
     ylim([0 100*(max(latent)/channels)]);
     ylabel('Percentual')
     grid on
-    
-% Function that return the y tensor (Channel X Signal X Frequency) 
-%y=eeg2tensor(x);
 
-% ALS
+% APAGAR EM APRESENTAÇÃO
+close all;
+
+clearvars -except x_cs samples t fs
+% Function that return the y tensor (Channel X Signal X Frequency) 
+y=eeg2tensor(x_cs,fs);
+
+% COMO PLOTAR O TENSOR? 
+
+% UNFOLD 
+
+% PCA TENSORIAL
+
+% ALS TENSORIAL

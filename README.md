@@ -3,13 +3,15 @@ A utilizacao de ferramentas tensoriais para processamento do EEG e predicao de c
 
 - [x] Descrição do Conjunto de Dados
 - [x] Centralização e Escalonamento
-- [ ] Análise da Covariância
-- [ ] PCA
-- [ ] ALS
+- [x] Análise da Covariância
+- [x] PCA
+- [x] ALS
 
 Deste modo, observamos o conjunto de dados do banco de dados do MIT, para vislumbrar o uso de tecnicas tensoriais e se for o caso, testar sua eficiencia e eficacia na solucao destes problemas.
 
-Parte do DATASET está disponível em: https://physionet.org/pn6/chbmit/
+O conjunto de dados (.edf) utilizado está disponível em: https://physionet.org/pn6/chbmit/
+
+Os arquivos utilizados (.mat) podem ser acessados [aqui](https://drive.google.com/open?id=1LWi0A7CISe-tF0lbmxGAqMfGJC99iDwR).
 
 Para os exemplos deste arquivo são utilizado o arquivo [chb01_03.edf](https://github.com/processamentobio/eeg-and-tensors/blob/Rush-01/Abril/functions/chb01_03.edf), que tem 23 canais, 921600 amostras e frequência de amostragem 256Hz. Ou seja, o exame tem duração de 1 hora.
 
@@ -49,6 +51,12 @@ Ainda é um pouco difícil de visualizar algo efetivo, mas é possível observar
 <img src="https://github.com/processamentobio/eeg-and-tensors/blob/Rush-01/Abril/images/chb01_03.edf/heatmap_03.png" width="500" >
 </p>
 
+## PCA - Abordagem Linear (SVD)
+
 <p align="center">
 <img src="https://github.com/processamentobio/eeg-and-tensors/blob/Rush-01/Abril/images/chb01_03.edf/screeplot_01.png" width="500" >
 </p>
+
+## PCA - Abordagem Multilinear (MLSVD)
+
+## ALS - Abordagem Multilinear (CPD/PARAFAC)

@@ -1,0 +1,11 @@
+#ignore all .txt files
+#.txt
+
+#ignore all .edf files
+.edf
+
+# ignore all .asv files
+*.asv
+
+# Ignore all files in the directory named Database
+#Database/
